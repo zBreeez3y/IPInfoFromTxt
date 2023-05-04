@@ -1,5 +1,5 @@
 # IPDb2Txt
-A simplen Python 3 script that iterates through IPs and queries them via AbuseIPDB Check Endpoint API. This script will also generate an HTML document that will automatically open in a new tab in your default browser once the script completes.
+A simple Python 3 script that iterates through IPs and queries them via AbuseIPDB Check Endpoint API. This script will also generate an HTML document that will automatically open in a new tab in your default browser once the script completes.
 
 ## Setup
 - Create an AbuseIPDB account and get an API key
