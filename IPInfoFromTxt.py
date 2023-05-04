@@ -1,7 +1,6 @@
 #!/usr/env/python3
 
 import os
-import re
 import json
 import requests
 import webbrowser
