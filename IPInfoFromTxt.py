@@ -1,6 +1,7 @@
 #!/usr/env/python3
 
 import os
+import re
 import json
 import requests
 import webbrowser
@@ -35,7 +36,7 @@ with open(html_file, 'w') as f:
 	f.write(
 		'<html>' + '\n' +
 		'  <head>' + '\n' +
-		'    <title>AbuseIPDB Reports</title>' + '\n' +
+		'    <title>IP Address Information</title>' + '\n' +
 		'    <style>' + '\n' +
 		'      body {' + '\n' +
 		'        background-color: #cccccc;' + '\n' +
@@ -58,7 +59,7 @@ with open(html_file, 'w') as f:
 		'    </style>' + '\n' +
 		'  </head>' + '\n' +
 		'  <body>' + '\n' +
-		'    <h1>AbuseIPDB Reports</h1>' + '\n' +
+		'    <h1>IP Address Information</h1>' + '\n' +
 		'    <table>' + '\n' +
 		'      <tr>' + '\n' +
 		'        <th>IP</th>' + '\n' +
@@ -73,12 +74,11 @@ f.close()
 #Read IP file and append each IP to IP list
 ips = []
 ip_file = new_cwd + 'ips.txt'
-with open(ip_file, 'r') as f: 
+with open(ip_file, 'r+') as f: 
 	file = f.read().split('\n')
 	for ip in file:
-		if ip == '':
-			pass
-		ips.append(ip)
+		if not ip.strip() == '':
+			ips.append(ip)
 f.close()
 
 #For each IP in IP list, query AbuseIPDB Check API Endpoint and print results to reports file, then append the information in HTML to the HTML file
@@ -98,7 +98,10 @@ for ip in ips:
 			'Abuse Confidence Score: ' + str(response['data']['abuseConfidenceScore']) + '\n' +
 			'Domain: ' + str(response['data']['domain']) + '\n' +
 			'Country Code: ' + str(response['data']['countryCode']) + '\n' +
-			'Report Link: ' + report_url + ('\n' * 3) 
+			'AbuseIPDB Report: ' + report_url + '\n' +
+			'VirusTotal Report: ' +  "https://www.virustotal.com/gui/ip-address/{}".format(str(ip)) + '\n' +
+			'IP Teoh Report: ' + "https://ip.teoh.io/{}".format(str(ip))
+			+ ('\n' * 3) 
 			)
 	f.close()
 	with open(html_file, 'a') as h: 
@@ -129,7 +132,7 @@ for ip in ips:
 		h.write(
 			'        <td>{}</td>'.format(str(response['data']['domain'])) + '\n' +
 			'        <td>{}</td>'.format(str(response['data']['countryCode'])) + '\n' +
-			'        <td><a href="{}">Review</a></td>'.format(report_url) + '\n' +
+			'        <td><a href="{}">1</a> <a href="https://www.virustotal.com/gui/ip-address/{}">2</a> <a href="https://ip.teoh.io/{}">3</a></td>'.format(report_url, str(ip), str(ip)) + '\n' +
 			'      </tr>' + '\n'
 			)
 	h.close()
