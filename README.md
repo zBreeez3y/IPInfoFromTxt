@@ -9,3 +9,8 @@ A simple Python 3 script that iterates through IPs and queries them via AbuseIPD
 ## Usage 
     python3 IPInfoFromTxt.py
 Creates a text file called "reports.txt" and an HTML file called "reports.html" in the scripts directory. 
+
+On the HTML document, the 3 links are:
+  - AbuseIPDB report
+  - VirusTotal report
+  - IP Teoh report
