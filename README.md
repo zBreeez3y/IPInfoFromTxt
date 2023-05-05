@@ -1,4 +1,4 @@
-# IPDb2Txt
+# IPInfoFromTxt
 A simple Python 3 script that iterates through IPs and queries them via AbuseIPDB Check Endpoint API. This script will also generate an HTML document that will automatically open in a new tab in your default browser once the script completes.
 
 ## Setup
@@ -8,3 +8,4 @@ A simple Python 3 script that iterates through IPs and queries them via AbuseIPD
 
 ## Usage 
     python3 IPInfoFromTxt.py
+Creates a text file called "reports.txt" and an HTML file called "reports.html" in the scripts directory. 
